@@ -10,14 +10,14 @@ def complete_space(value):
     return f"{value}{space}"
 
 
-def particular_rule(values):
+def question1_rule(values):
     """Creating fields with 11 spaces and truncate it"""
     for key in values:
         values[key] = complete_space(values[key])
     return f"{values['name']}{values['cpf']}{values['state']}{values['value']}"
 
 
-def list_to_string(items):
+def list_to_string(items, particular_rule):
     """Receive a list and return a concateneted string"""
     allowed_keys = ['name', 'cpf', 'state', 'value']
     final_str = ''
