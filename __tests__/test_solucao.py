@@ -29,8 +29,8 @@ def test_list_with_one_dictionary_to_string_success():
 
     result = list_to_string(input)
 
-    assert len(result) == 44
-    assert result == 'Maria Neusa97905796671Sao Paulo  1234       '
+    assert len(result) == 45
+    assert result == 'Maria Neusa97905796671Sao Paulo  1234       \n'
 
 def test_unordered_list():
     """send an unordered list and receive the correct string"""
@@ -43,7 +43,7 @@ def test_unordered_list():
 
     result = list_to_string(input)
 
-    assert result == 'Maria Neusa97905796671Sao Paulo  1234       '
+    assert result == 'Maria Neusa97905796671Sao Paulo  1234       \n'
 
 
 def test_uncompleted_dictionary():
@@ -77,5 +77,5 @@ def test_list_with_two_dictionaries_to_string_success():
 
     result = list_to_string(input)
 
-    assert len(result) == 88
-    assert result == 'Maria Neusa97905796671Sao Paulo  1234       Ricardo Fon44010762900Rio Grande 567        '
+    assert len(result) == 90
+    assert result == 'Maria Neusa97905796671Sao Paulo  1234       \nRicardo Fon44010762900Rio Grande 567        \n'

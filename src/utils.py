@@ -22,6 +22,6 @@ def list_to_string(items):
 
     for item in items:
         if len(item.keys()) == 4 and sorted(item.keys()) == sorted(allowed_keys):
-            final_str += particular_rule(item) 
+            final_str += particular_rule(item) + "\n"
 
     return final_str
