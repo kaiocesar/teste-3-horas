@@ -12,23 +12,34 @@ def complete_space(value):
 
 def question1_rule(values):
     """Creating fields with 11 spaces and truncate it"""
-    for key in values:
-        values[key] = complete_space(values[key])
-    return f"{values['name']}{values['cpf']}{values['state']}{values['value']}"
-
-
-def list_to_string(items, particular_rule):
-    """Receive a list and return a concateneted string"""
-    allowed_keys = ['name', 'cpf', 'state', 'value']
     final_str = ''
-    if not isinstance(items, list):
-        raise TypeError('The function arg should be a list.')
+    items = values[1]
+    allowed_keys = ['name', 'cpf', 'state', 'value']
 
     for item in items:
         if len(item.keys()) == 4 and sorted(item.keys()) == sorted(allowed_keys):
-            final_str += particular_rule(item) + "\n"
+            for key in item:
+                item[key] = complete_space(item[key])
+            final_str += f"{item['name']}{item['cpf']}{item['state']}{item['value']}\n"
 
     return final_str
+
+
+def question2_rule(**kwargs):
+    pass
+
+
+def list_to_string(*params):
+    """Receive a list and return a concateneted string"""
+    if not params:
+        raise IndexError('The function args should receive some parameters.')
+
+    if len(params) < 1 or not isinstance(params[1], list) or not callable(params[0]):
+        raise TypeError(
+            'The function arg should be a function, and list of items.'
+            )
+
+    return params[0](params)
 
 
 def get_format_parameters(file):
