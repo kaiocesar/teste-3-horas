@@ -1,0 +1,12 @@
+cpf:
+  length: 14
+  align: right
+  padding: zeroes
+value:
+  length: 8
+  align: right
+  padding: zeroes
+state:
+  length: 14
+  align: left
+  padding: spaces

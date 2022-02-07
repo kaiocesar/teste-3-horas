@@ -10,6 +10,24 @@ def complete_space(value):
     return f"{value}{space}"
 
 
+def format_field(value, rule):
+    """Custom format string"""
+    length = rule['length']
+    align = rule['align']
+    padding = '0' if rule['padding'] == 'zeroes' else ' '
+
+    if len(value) > length:
+        value = value[0:length].strip()
+
+    if len(value) < length:
+        space = padding * (length - len(value))
+        if align == 'left':
+            value = f"{value}{space}"
+        else:
+            value = f"{space}{value}"
+    return value
+
+
 def question1_rule(values):
     """Creating fields with 11 spaces and truncate it"""
     final_str = ''
@@ -27,8 +45,23 @@ def question1_rule(values):
     return final_str
 
 
-def question2_rule(**kwargs):
-    pass
+def question2_rule(params):
+    """Creating string based on a list and using a format rule"""
+    final_str = ''
+    items = params[1]
+    format_value = params[2]
+    for item in items:
+        for key in item:
+            if key in format_value.keys():
+                item[key] = format_field(item[key], format_value[key])
+            else:
+                item[key] = complete_space(item[key])
+        # final_str += \
+        #     f"{item['name']}{item['cpf']}{item['state']}{item['value']}\n"
+        for format_key in format_value.keys():
+            final_str += item[format_key]
+
+    return f"{final_str}\n"
 
 
 def list_to_string(*params):
