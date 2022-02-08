@@ -80,6 +80,26 @@ def list_to_string(*params):
     return params[0](params)
 
 
+def string_to_list(*params):
+    """Receive a string and convert it to a list"""
+    if None in params:
+        raise IndexError('The function parameters should be filled.')
+
+    c = 0
+    str_items = params[0]
+    format_rules = params[1]
+    format_keys = list(format_rules.keys())
+    total_lines = 0
+    dict_items = {}
+    while c < len(format_keys):
+        key = format_keys[c]
+        length = format_rules[key]['length']
+        dict_items[key] = str_items[total_lines:(total_lines+length)]
+        total_lines += format_rules[key]['length']
+        c += 1
+    return dict_items
+
+
 def get_format_parameters(file):
     """Getting a list of parameters from a file"""
     with open(file, 'r') as stream:
